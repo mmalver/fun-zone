@@ -2,26 +2,24 @@
 If no date is passed to the function, today is used by default. 
 */
 function getShowDatesInYear(startDate = new Date()) {
-
+dateCopy = new Date(startDate); // create copy since dates are passed by reference and don't want to corrupt data passed to this function.
 showDates = [];
-if (startDate.getDay() != 0)
-startDate.setDate(startDate.getDate() + (7 - startDate.getDay()));
-thisYear = startDate.getFullYear();
-while (startDate.getFullYear() == thisYear) {
-if (startDate.getDate() == 27) 
-showDates.push(new Date(startDate));
-startDate.setDate(startDate.getDate()+7)
+if (dateCopy.getDay() != 0)
+ dateCopy.setDate(dateCopy.getDate() + (7 - dateCopy.getDay()));
+thisYear = dateCopy.getFullYear();
+while (dateCopy.getFullYear() == thisYear) {
+if (dateCopy.getDate() == 27) 
+  showDates.push(new Date(dateCopy));
+dateCopy.setDate(dateCopy.getDate()+7)
 }
-return showDates
+return showDates;
 }
 
 /* This function accepts a date and tells you when the next show is after that date.If there are no more shows in the year of the date provided, this method will check the next year.
 */
 function getNextShowDate(startDate = new Date()) {
-    // In the below line, I pass a new date to ensure the start date variable doesn't get modified by the function it would be passed to.
-     showDates = getShowDatesInYear(new Date(startDate.getFullYear(),startDate.getMonth(),startDate.getDate())); // get a list of dates for the remainder of the year.
+     showDates = getShowDatesInYear(startDate);
      currentYear = startDate.getFullYear(); // this is used to keep track of the year if there are no shows left in the current year.
-     
     while (showDates.length == 0){ // there were no shows left in current year. 
         currentYear +=1; // figure out how many shows are in the next year.
         showDates = getShowDatesInYear(new Date(currentYear,0,1));
@@ -92,9 +90,7 @@ returnString = initString.concat("The show will air on ",convertDate(getNextShow
     // end of if structure for more than 1 total show.
     
     }
-    
- return "fish";   
-// end of method
+ // end of method
 }
 
     
