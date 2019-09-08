@@ -48,25 +48,24 @@ function getDisplayHTML() {
        futureShows = getNumberOfShowsInYear(); // how many shows left in the current year.
        if (futureShows == 0)
        {
-        initString = "All of the regularly scheduled Wierd Al shows have happened for this year.<br>";
+        initString = "All of the regularly scheduled Weird Al shows have happened for this year.<br>";
         returnString = initString.concat("The next show will be broadcast on ",convertDate(getNextShowDate(),true),".</br</p>");
         return returnString
     }
     if (totalShows == 1 && futureShows == 1) {
-        initString = "There is one  regularly scheduled Wierd Al show which should  be broadcast this year.<br>";
+        initString = "There is one regularly scheduled Weird Al show which will be broadcast this year.<br>";
         returnString = initString.concat("The show will air on ",convertDate(getNextShowDate()),".</br></p>");
         return returnString;
     }
     if (totalShows > 1)
     {
         if (futureShows == 1) {
-                initString = "There is one  regularly scheduled Wierd Al show left to be broadcast this year.<br>";
+                initString = "There is one regularly scheduled Weird Al show left to be broadcast this year.<br>";
 returnString = initString.concat("The show will air on ",convertDate(getNextShowDate()),".</br></p>");
         return returnString;
     }
     else {
         // generate a displayable list of dates for the remaining shows.
-        remainingShows = getShowDatesInYear();
         broadcastDates = "";
         for (d=0;d<futureShows;++d) {
             if (d < futureShows-1)
@@ -80,7 +79,7 @@ returnString = initString.concat("The show will air on ",convertDate(getNextShow
         // end of loop
         }
         
-        initString = "There are " + futureShows + " regularly scheduled Wierd Al shows left to be broadcast this year.<br>";
+        initString = "There are " + futureShows + " regularly scheduled Weird Al shows left to be broadcast this year.<br>";
         returnHTML = initString.concat("They will be broadcast on ",broadcastDates);
         return returnHTML;
     // end of else
