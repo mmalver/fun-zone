@@ -46,22 +46,23 @@ else return months[d.getMonth()] +" " +  d.getDate()+ ", " + d.getFullYear();
 function getDisplayHTML() {
        totalShows = getNumberOfShowsInYear(new Date(new Date().getFullYear(),0,1)); // total number of shows for the current year.
        futureShows = getNumberOfShowsInYear(); // how many shows left in the current year.
+       remainingShows = getShowDatesInYear(); // how many shows remaining for this year.
        if (futureShows == 0)
        {
-        initString = "All of the regularly scheduled Weird Al shows have happened for this year.<br>";
-        returnString = initString.concat("The next show will be broadcast on ",convertDate(getNextShowDate(),true),".</br</p>");
+        initString = "All of the regularly scheduled <q>Weird Al</q> shows have happened for this year.<br>";
+        returnString = initString.concat("The next show will be broadcast on <b>",convertDate(getNextShowDate(),true),"</b>.</br</p>");
         return returnString
     }
     if (totalShows == 1 && futureShows == 1) {
-        initString = "There is one regularly scheduled Weird Al show which will be broadcast this year.<br>";
-        returnString = initString.concat("The show will air on ",convertDate(getNextShowDate()),".</br></p>");
+        initString = "There is one regularly scheduled <q>Weird Al</q> show which will be broadcast this year.<br>";
+        returnString = initString.concat("The show will air on <b>",convertDate(getNextShowDate()),"</b>.</br></p>");
         return returnString;
     }
     if (totalShows > 1)
     {
         if (futureShows == 1) {
-                initString = "There is one regularly scheduled Weird Al show left to be broadcast this year.<br>";
-returnString = initString.concat("The show will air on ",convertDate(getNextShowDate()),".</br></p>");
+                initString = "There is one regularly scheduled <q>Weird Al</q> show left to be broadcast this year.<br>";
+returnString = initString.concat("The show will air on <b>",convertDate(getNextShowDate()),"</b>.</br></p>");
         return returnString;
     }
     else {
@@ -69,8 +70,11 @@ returnString = initString.concat("The show will air on ",convertDate(getNextShow
         broadcastDates = "";
         for (d=0;d<futureShows;++d) {
             if (d < futureShows-1)
-            {
-            broadcastDates = broadcastDates.concat(convertDate(remainingShows[d]),','," ");
+                {
+                    if (d == 0)
+                        broadcastDates = broadcastDates.concat("<b>",convertDate(remainingShows[d]),"</b>",','," ");
+                    else
+                        broadcastDates = broadcastDates.concat(convertDate(remainingShows[d]),','," ");
             }
             else if (d == futureShows-1)
             broadcastDates =  broadcastDates.concat("and ",convertDate(remainingShows[d]),".<br />");
